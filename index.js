@@ -5,7 +5,7 @@ app.use(express.json());
 
 app.get("/", (req, res) => {
     res.json({
-        msg: "hello from API"
+        msg: "hello from API 🎉🎉🎉🎉 "
     })
 })
 
