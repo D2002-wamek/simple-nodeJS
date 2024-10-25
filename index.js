@@ -1,7 +1,6 @@
 const express = require('express');
 const app = express();
 const port = 3000;
-
 const usersRouter = require("./routes/users.js")
 
 // Middleware pour traiter les données JSON envoyées dans le body
