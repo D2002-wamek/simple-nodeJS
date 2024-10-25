@@ -13,6 +13,28 @@ const users = [
 	{ id: 5, firstName: "Charlie", lastName: "Davis", role: "admin" },
 ];
 
+// GET : Récupérer tous les utilisateurs
+app.get("/", (req, res) => {
+	res.json(users);
+});
+
+// GET : Récupérer un utilisateur spécifique en fonction de son ID
+app.get("/users/:id", (req, res) => {
+	// Récupérer l'ID de l'utilisateur depuis les paramètres de l'URL
+	const id = parseInt(req.params.id);
+
+	// Trouver l'utilisateur correspondant à l'ID
+	const userIndex = users.findIndex((user) => user.id === id);
+
+	// Vérifier si l'utilisateur existe
+	if (userIndex < 0) {
+		return res.status(404).json({ msg: "Utilisateur non trouvé" });
+	}
+
+	// Si l'utilisateur est trouvé, retourner ses informations
+	res.json(users[userIndex]);
+});
+
 // POST : Ajouter un nouvel utilisateur
 app.post("/", (req, res) => {
 	const { firstName, lastName } = req.body;
@@ -50,24 +72,15 @@ app.put("/users/:id", (req, res) => {
 
 // DELETE : Supprimer un utilisateur en fonction de son ID
 app.delete("/users/:id", (req, res) => {
-	// Récupérer l'ID de l'utilisateur depuis les paramètres de l'URL
 	const id = parseInt(req.params.id);
-
-	// Trouver l'index de l'utilisateur avec l'ID donné
 	const userIndex = users.findIndex((user) => user.id === id);
 
-	// Vérifier si l'utilisateur existe
 	if (userIndex < 0) {
 		return res.status(404).json({ msg: "Utilisateur non trouvé" });
 	}
 
-	// Supprimer l'utilisateur en utilisant la méthode splice
 	users.splice(userIndex, 1);
-
-	// Retourner une réponse confirmant la suppression
-	res.json({
-		msg: "Utilisateur supprimé",
-	});
+	res.json({ msg: "Utilisateur supprimé" });
 });
 
 // Démarrer le serveur
