@@ -2,8 +2,11 @@ const express = require('express');
 const app = express();
 const port = 3000;
 
+const usersRouter = require("./routes/users.js")
+
 // Middleware pour traiter les données JSON envoyées dans le body
 app.use(express.json());
+app.use("/api/", usersRouter)
 
 const users = [
 	{ id: 1, firstName: "John", lastName: "Doe", role: "admin" },
