@@ -5,28 +5,28 @@ const port = 3000;
 // Middleware pour traiter les données JSON envoyées dans le body
 app.use(express.json());
 
+// POST : CRÉER un nouvel utilisateur, basé sur les données passées dans le corps(body) de la requête
 app.post("/", (req, res) => {
-    // Extraire les données du body
-    const { firstName, lastName, role } = req.body;
+	// récupérer toutes les données qui arrivent dans le corps de la requête (body)
+	const { firstName, lastName } = req.body
 
-    // Afficher les données reçues dans le terminal
-    console.log("Requête reçue:", req.body);
+	// récupérer l'ID du dernier utilisateur en fonction du nombre d'utilisateurs dans notre variable de tableau 'users'.
+	const lastId = users[users.length - 1].id
+	// ajouter un pour créer un utilisateur unique
+	const newId = lastId + 1
 
-    // Vérification de base pour s'assurer que tous les champs sont présents
-    if (!firstName || !lastName || !role) {
-        return res.status(400).json({ message: "Tous les champs (firstName, lastName, role) sont requis." });
-    }
+	// créer le nouvel utilisateur avec les données du corps de la requête et l'ID calculé
+	const newUser = {
+		firstName,
+		lastName,
+		id: newId,
+	}
 
-    // Répondre avec un message de confirmation et les données envoyées
-    res.json({
-        msg: "Nouvel utilisateur ajouté avec succès!",
-        user: {
-            firstName,
-            lastName,
-            role
-        }
-    });
-});
+	// ajouter le nouvel utilisateur à notre liste d'utilisateurs en utilisant la méthode 'push'
+	users.push(newUser)
+	// envoyer le code de statut 201 (créé) et les données du nouvel utilisateur afin de confirmer au client.
+	res.status(201).json(newUser)
+})
 
 // Démarrer le serveur
 app.listen(port, () => {
