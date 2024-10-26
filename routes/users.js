@@ -1,6 +1,9 @@
 const express = require("express")
 const router = express.Router()
-const { getAllUsers } = require("../controllers/usersControllers")
+const { 
+	getAllUsers,
+	createNewUser,
+ } = require("../controllers/usersControllers")
 
 const db = require ("../database")
 
