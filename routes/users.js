@@ -1,6 +1,8 @@
 const express = require("express")
 const router = express.Router()
 
+const db = require ("../database")
+
 // GET METHOD
 router.get("/users", (req, res) => {
 	db.all('SELECT * FROM users', [], (err, rows) => {
