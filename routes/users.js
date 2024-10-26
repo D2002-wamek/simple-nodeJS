@@ -8,20 +8,7 @@ const db = require ("../database")
 router.get("/users", getAllUsers)
 
 // POST METHOD
-router.post("/users", (req, res) => {
-    const { firstName, lastName } = req.body;
-	const lastId = users[users.length - 1].id;
-	const newId = lastId + 1;
-
-	const newUser = {
-		id: newId,
-		firstName,
-		lastName
-	};
-
-	users.push(newUser);
-	res.status(201).json(newUser);
-})
+router.post("/users", )
 
 // PUT METHOD
 router.put("/users", (req, res) => {
