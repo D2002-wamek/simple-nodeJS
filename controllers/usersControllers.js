@@ -1,13 +1,18 @@
 const db = require("../database")
 
 exports.getAllUsers = function (req, res) {
-	db.all("SELECT * FROM users", [], (err, rows) => {
-		if (err) {
-			res.status(500).json({ error: err.message })
-		} else {
-			res.json(rows)
+    db.run(
+		"INSERT INTO users (firstName, lastName) VALUES (?, ?)",
+		[firstName, lastName],
+		function (err) {
+			if (err) {
+				res.status(500).json({ error: err.message })
+			} else {
+				res.status(201).json({ id: this.lastID, firstName })
+			}
 		}
-	})
+	)
+
 }
 
 exports.createNewUser = (req, res) => {
