@@ -8,7 +8,7 @@ const db = require ("../database")
 router.get("/users", getAllUsers)
 
 // POST METHOD
-router.post("/users", )
+router.post("/users", createNewUser)
 
 // PUT METHOD
 router.put("/users", (req, res) => {

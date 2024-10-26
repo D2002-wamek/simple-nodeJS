@@ -9,3 +9,18 @@ exports.getAllUsers = function (req, res) {
 		}
 	})
 }
+
+exports.createNewUser = (req, res) => {
+    const { firstName, lastName } = req.body;
+	const lastId = users[users.length - 1].id;
+	const newId = lastId + 1;
+
+	const newUser = {
+		id: newId,
+		firstName,
+		lastName
+	};
+
+	users.push(newUser);
+	res.status(201).json(newUser);
+}
