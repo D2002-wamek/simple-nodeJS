@@ -1,3 +1,5 @@
+const db = require("../database")
+
 exports.getAllUsers = function (req, res) {
 	db.all("SELECT * FROM users", [], (err, rows) => {
 		if (err) {
