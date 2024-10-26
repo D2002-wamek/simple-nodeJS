@@ -4,16 +4,7 @@ const router = express.Router()
 const db = require ("../database")
 
 // GET METHOD
-router.get("/users", (req, res) => {
-	db.all('SELECT * FROM users', [], (err, rows) => {
-		if (err) {
-		  res.status(500).json({ error: err.message });
-		} else {
-		  res.json(rows);
-		}
-	  });
-	  
-})
+router.get("/users", )
 
 // POST METHOD
 router.post("/users", (req, res) => {
