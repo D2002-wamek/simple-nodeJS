@@ -1,10 +1,11 @@
 const express = require("express")
 const router = express.Router()
+const { getAllUsers } = require("../controllers/usersControllers")
 
 const db = require ("../database")
 
 // GET METHOD
-router.get("/users", )
+router.get("/users", getAllUsers)
 
 // POST METHOD
 router.post("/users", (req, res) => {
