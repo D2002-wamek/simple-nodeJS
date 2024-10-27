@@ -45,4 +45,5 @@ router.delete("/users", (req, res) => {
 	res.json({ msg: "Utilisateur supprimé" });
 })
 
+
 module.exports = router

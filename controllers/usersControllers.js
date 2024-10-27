@@ -21,6 +21,8 @@ exports.getAllUsers = function (req, res) {
 exports.createNewUser = (req, res) => {
 	const { firstName, lastName } = req.body;
 
+    if (!firstName) return res.status(400).json({error: "the first name is required ! "})
+
 	db.run(
 		"INSERT INTO users (firstName, lastName) VALUES (?, ?)",
 		[firstName, lastName],
