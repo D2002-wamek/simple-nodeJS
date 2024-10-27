@@ -4,6 +4,7 @@ const {
 	getAllUsers,
 	createNewUser,
 	updateUser,
+	deleteUser,
  } = require("../controllers/usersControllers")
 
 const db = require ("../database")
@@ -18,17 +19,7 @@ router.post("/users", createNewUser)
 router.put("/users/:id", updateUser)
 
 // DELETE METHOD
-router.delete("/users", (req, res) => {
-    const id = parseInt(req.params.id);
-	const userIndex = users.findIndex((user) => user.id === id);
-
-	if (userIndex < 0) {
-		return res.status(404).json({ msg: "Utilisateur non trouvé" });
-	}
-
-	users.splice(userIndex, 1);
-	res.json({ msg: "Utilisateur supprimé" });
-})
+router.delete("/users/:id", deleteUser)
 
 
 module.exports = router

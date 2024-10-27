@@ -92,3 +92,21 @@ exports.updateUser = (req, res) => {
 	}
 }
 
+
+exports.deleteUser = (req, res) => {
+	// get the id from the params
+	const { id } = req.params
+	// run the query
+	db.run("DELETE FROM users WHERE id = ?", [id], function (err) {
+		if (err) {
+			res.status(500).json({ error: err.message })
+		} else if (this.changes === 0) {
+			// if nothing found
+			res.status(404).json({ message: "User not found" })
+		} else {
+			// is successful
+			res.status(200).json({ message: "User deleted !" })
+		}
+	})
+}
+
