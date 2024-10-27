@@ -15,7 +15,7 @@ router.get("/users", getAllUsers)
 router.post("/users", createNewUser)
 
 // PUT METHOD
-router.put("/users", updateUser)
+router.put("/users/:id", updateUser)
 
 // DELETE METHOD
 router.delete("/users", (req, res) => {
