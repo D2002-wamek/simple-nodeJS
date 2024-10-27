@@ -4,10 +4,9 @@ const db = require("../database");
 exports.getAllUsers = function (req, res) {
 	const { firstName, lastName } = req.body;  // Extraire les valeurs depuis le corps de la requête
 
-    if (!firstName) {
-        return res.status(400).json({error: "the first name is required ! "})
+    if (typeof firstName !== "string") {
+        return res.status(400).json({error: "that's a weird name ! "})
     }
-
 
 	db.run(
 		"INSERT INTO users (firstName, lastName) VALUES (?, ?)",
